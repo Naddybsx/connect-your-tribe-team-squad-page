@@ -10,9 +10,9 @@ const teamName = "Hype";
 const personResponse = await fetch(
   "https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={%22_and%22:[{%22squads%22:{%22squad_id%22:{%22tribe%22:{%22name%22:%22FDND%20Jaar%201%22}}}},{%22squads%22:{%22squad_id%22:{%22cohort%22:%222425%22}}},{%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}]}"
 );
-const personResponseJSON = await personResponse.json();
+const {data: persons} = await personResponse.json();
 
-const processedPeople = personResponseJSON.data.map((person) => {
+const processedPeople = persons.map((person) => {
   try {
     const capitalizedParts = person.name
       .split(" ") // Split de naam in verschillende delen
@@ -82,7 +82,7 @@ app.use((request, response, next) => {
 const squadResponse = await fetch(
   'https://fdnd.directus.app/items/squad?filter={"_and":[{"cohort":"2425"},{"tribe":{"name":"FDND Jaar 1"}}]}'
 );
-const squadResponseJSON = await squadResponse.json();
+const {data: squads} = await squadResponse.json();
 
 app.get("/", async function (request, response) {
   // Get all likes
@@ -91,7 +91,7 @@ app.get("/", async function (request, response) {
 
   // tel likeCounts en personalLikes in 1 pass
   const likeCounts = {};
-  const personalLikes = allLikes.reduce((likedPersonIds, like) => {
+  const likes = JSON.stringify(allLikes.reduce((likedPersonIds, like) => {
     // tel alle likes per persoon (id)
     likeCounts[like.text] = (likeCounts[like.text] || 0) + 1;
     
@@ -100,7 +100,7 @@ app.get("/", async function (request, response) {
       likedPersonIds.push(Number(like.text));
     }
     return likedPersonIds;
-  }, []);
+  }, []));
 
   // Get team messages
   const messagesResponse = await fetch(
@@ -111,10 +111,10 @@ app.get("/", async function (request, response) {
   // Nettere implementatie voor likes & cleanere 
   response.render("index.liquid", {
     teamName,
-    persons: personResponseJSON.data,
-    squads: squadResponseJSON.data,
+    persons,
+    squads,
     messages,
-    likes: JSON.stringify(personalLikes), // Stringify om ze goed te sepereren
+    likes,
     likeCounts
   });
 });
@@ -124,18 +124,18 @@ app.get("/student/:id", async function (request, response) {
   const personDetailResponse = await fetch(
     `https://fdnd.directus.app/items/person/${request.params.id}`
   );
-  const personDetailResponseJSON = await personDetailResponse.json();
+  const {data: person} = await personDetailResponse.json();
 
   // Haal berichten op die specifiek voor deze student bedoeld zijn
   const messagesResponse = await fetch(
     `https://fdnd.directus.app/items/messages/?filter={"for":"${request.params.id}"}`
   );
-  const messagesResponseJSON = await messagesResponse.json();
+  const {data: messages} = await messagesResponse.json();
 
   response.render("student.liquid", {
-    person: personDetailResponseJSON.data,
-    squads: squadResponseJSON.data,
-    messages: messagesResponseJSON.data, // Stuur alleen berichten voor deze student
+    person,
+    squads,
+    messages // Stuur alleen berichten voor deze student
   });
 });
 
@@ -215,12 +215,12 @@ app.get("/logger", async function (request, response) {
   const messagesResponse = await fetch(
     `https://fdnd.directus.app/items/messages/?filter={"for":"Team ${teamName}"}`
   );
-  const messagesResponseJSON = await messagesResponse.json();
+  const {data: messages} = await messagesResponse.json();
 
   response.render("logger.liquid", {
     teamName,
-    squads: squadResponseJSON.data,
-    messages: messagesResponseJSON.data,
+    squads,
+    messages
   });
 });
 
