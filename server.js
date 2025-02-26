@@ -14,7 +14,6 @@ const personResponseJSON = await personResponse.json();
 
 const processedPeople = personResponseJSON.data.map((person) => {
   try {
-    const likedBy = person.custom;
     const capitalizedParts = person.name
       .split(" ") // Split de naam in verschillende delen
       .filter((part) => /^[A-Z]/.test(part)) // Test of de eerste letter een hoofdletter is
