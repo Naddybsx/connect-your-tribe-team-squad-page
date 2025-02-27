@@ -7,7 +7,7 @@ Welkom op de squadpage van team Hype. Een dynamische website waarbij je squadled
 `Inloggen is simpel:` vul je voornaam en de eerste twee letters vanje achternaam in. Eenmaal ingelogd kom je op de overzichtspagina, waar je alle squadleden ziet. Je kunt een like achterlaten als je iemand wilt waarderen en berichten plaatsen op hun profielpagina. Alles wordt netjes opgeslagen, zodat je kunt zien wie de meeste likes heeft en wat er wordt gezegd!
 
 ### Teamleden & bijdragen
-- [Amber](https://github.com/ambersr)
+#### [Amber](https://github.com/ambersr)
 
 
 Op de Squadpage heb ik een aandeel gehad in de ontwerpkeuzes. Denk bijvoorbeeld aan de styling van de inlogpagina en overige pagina's van de squadpage en de opbouw van de stylesheet dat alle huisstijl elementen bevat. Daarnaast heb ik de opzet gemaakt voor alle HTML en styling bestanden.
@@ -32,9 +32,141 @@ De filterfunctie is opgebouwd aan de hand van een `<detail>` met een `<summary>`
 
 https://github.com/user-attachments/assets/17d5df3b-8019-42ba-ba97-b63479fa0110
 
-- [Colin](https://github.com/ColindeGroot)
-- [Marcin](https://github.com/MarsGotBars)
-- [Nadira](https://github.com/Naddybsx)
+#### [Colin](https://github.com/ColindeGroot)
+  
+#### [Marcin](https://github.com/MarsGotBars)
+Grotendeels heb ik me beziggehouden met het inlogsysteem, like systeem, algemene code refactoring en de kaart animaties.
+
+##### Inlogsysteem
+D.M.V. cookie parser te gebruiken, sla ik in een cookie op wie inlogt, dit wordt ook 'gevalideert' door gebruik te maken van de lijst van studenten.
+
+Zo moeten gebruikers hun volle naam en eerste 2 letters van hun achternaam invullen om in te loggen, casing maakt hierbij niet uit aangezien ik dit allemaal omzet naar lowercase.
+
+<sub>Snippet waarbij ik gebruik maak van de persons data om alle valide gebruikers te verwerken en op te slaan</sub>
+```js
+const personResponse = await fetch(
+  "https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={%22_and%22:[{%22squads%22:{%22squad_id%22:{%22tribe%22:{%22name%22:%22FDND%20Jaar%201%22}}}},{%22squads%22:{%22squad_id%22:{%22cohort%22:%222425%22}}},{%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}]}"
+);
+const { data: persons } = await personResponse.json();
+
+const processedPeople = persons.map((person) => {
+  try {
+    const capitalizedParts = person.name
+      .split(" ") // Split de naam in verschillende delen
+      .filter((part) => /^[A-Z]/.test(part)) // Test of de eerste letter een hoofdletter is
+      .map((part) => part.toLowerCase()); // Zet alle resterende letters naar lowercase
+
+    return {
+      firstName: capitalizedParts[0],
+      // Pak de eerste 2 letters van de achternaam
+      lastName: capitalizedParts[1],
+      fullName: capitalizedParts[0] + capitalizedParts[1].slice(0, 2)
+    };
+  } catch (error) {
+    // In het geval dat een naam niet correct is krijg je er een error over en wordt er een lege string gereturned
+    // Zorgt ervoor dat de loop niet stopt
+    console.error("Error processing person:", {
+      error: error.message,
+      person: person,
+      name: person?.name || "No name found",
+    });
+    return {
+      firstName: "",
+      processedName: "",
+      fullName: ""
+    };
+  }
+});
+```
+
+
+<sub>Snippet waarbij ik gebruik maak van `next()` om te checken of de gebruiker werkelijk is ingelogd of niet, als niet dan wordt deze _altijd_ naar /inlog ge-redirect</sub>
+
+```js
+app.use((request, response, next) => {
+  // Zo weten wie er ingelogd is
+  logged = request.cookies.logged;
+  next();
+});
+
+// Tussenstukje om te checken of iemand ingelogd is
+app.use((request, response, next) => {
+  // Skip authentication for login page and its assets
+  if (request.path === "/login" || request.path.startsWith("/public")) {
+    return next();
+  }
+
+  // Redirect to login if not logged in
+  if (!logged) {
+    return response.redirect("/login");
+  }
+  next();
+});
+```
+
+<sub>Snippet van de daadwerkelijke inlog, in de post word alle ingevulde data verwerkt en gematched met de correcte processedPeople.fullName variabele</sub>
+
+```js
+app.get("/login", async function (request, response) {
+  if (logged) return response.redirect(303, "/");
+
+  response.render("login.liquid");
+});
+
+app.post("/login", async function (request, response) {
+  // Haal de input op van de login pagina
+  const inputName = request.body.naam;
+
+  if (!inputName) {
+    return response.render("login.liquid", {
+      error: "Voer een naam in",
+    });
+  }
+
+  // Zet de input om naar lowercase en verwijder spaties
+  const normalizedInput = inputName.toLowerCase().replace(/\s+/g, "");
+
+  // Match de input met een van de personen in de processedPeople array
+  const validUser = processedPeople.find((person) => {
+    const validLogin = `${person.fullName}`;
+    return validLogin === normalizedInput;
+  });
+
+  if (validUser) {
+    // Als de input overeenkomt met een van de personen in de processedPeople array, maak een cookie aan met hun naam
+    // en behoud deze cookie voor 1 jaar
+    response.cookie("logged", normalizedInput, {
+      maxAge: 34560000,
+      httpOnly: true,
+    });
+
+    // Log de ingelogde gebruiker in de team database
+    await fetch("https://fdnd.directus.app/items/messages/", {
+      method: "POST",
+      body: JSON.stringify({
+        for: `Team ${teamName}`,
+        from: "Systeem",
+        text: `${normalizedInput} is ingelogd!`,
+      }),
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+    });
+
+    return response.redirect(303, "/");
+  } else {
+    // Als de input niet overeenkomt met een van de personen in de processedPeople array, geef een error
+    return response.render("login.liquid", {
+      error: "Ongeldige login. Probeer opnieuw.",
+      inputName
+    });
+  }
+});
+```
+Ook krijgt de gebruiker een `error` message als de input leeg is of als de naam verkeerd is.
+In het geval dat de naam verkeerd is blijft de foute waarde staan na page reload dmv inputName op de value te zetten
+
+#### [Nadira](https://github.com/Naddybsx)
 
 ## Kenmerken
 `Onze squadpage is gebouwd met de volgende technieken:` Klik op de linkjes om meer te leren over wat deze technieken inhouden en hoe je het kunt gebruiken :)
