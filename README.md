@@ -3,12 +3,35 @@ Welkom op de squadpage van team Hype. Een dynamische website waarbij je squadled
 
 [Bekijk onze squadpage!](https://connect-your-tribe-team-squad-page-72f1.onrender.com/)
 
-
 ## Beschrijving
 `Inloggen is simpel:` vul je voornaam en de eerste twee letters vanje achternaam in. Eenmaal ingelogd kom je op de overzichtspagina, waar je alle squadleden ziet. Je kunt een like achterlaten als je iemand wilt waarderen en berichten plaatsen op hun profielpagina. Alles wordt netjes opgeslagen, zodat je kunt zien wie de meeste likes heeft en wat er wordt gezegd!
 
 ### Teamleden & bijdragen
 - [Amber](https://github.com/ambersr)
+
+Op de Squadpage heb ik een aandeel gehad in de ontwerpkeuzes. Denk bijvoorbeeld aan de styling van de inlogpagina en overige pagina's van de squadpage en de opbouw van de stylesheet dat alle huisstijl elementen bevat. Daarnaast heb ik de opzet gemaakt voor alle HTML en styling bestanden.
+
+**Ontwerpkeuzes**
+
+Styling
+<br>
+De kleuren op de squadpage bevatten de kleuren van het huisstijl. De belangrijkste elementen zoals de studenten cards en de buttons hebben een glass effect en bevatten een ronde border dit zorgt voor consistentie. Ook tussenruimtes (padding) wordt consistent doorgevoerd en zorgt ervoor dat de website een clean uiterlijk heeft.
+
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/fdafc4c2-c147-4817-bc89-f503212c79f7" />
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/3dd0bd43-4b9d-453c-bda0-688d4bb17940" />
+<br></br>
+Functionaliteit
+<br>
+Het ontwerp is goed doordacht aan de hand van een styleguide i.c.m een stylesheet waar de styling wordt vastgesteld. Daarnaast is het de squadpage mobile first ontwikkeld en werken de studenten cards aan de hand van grid helemaal responsive.
+<br></br>
+
+https://github.com/user-attachments/assets/f6ef934f-52f0-4a3d-9312-605b86d8ef2e
+
+De filterfunctie is opgebouwd aan de hand van een `<detail>` met een `<summary>`, deze heb ik aan de hand van de pseudo element een animatie gegeven.
+
+<video alt="image" src="https://github.com/user-attachments/assets/17d5df3b-8019-42ba-ba97-b63479fa0110" width="250">
+
+
 - [Colin](https://github.com/ColindeGroot)
 - [Marcin](https://github.com/MarsGotBars)
 - [Nadira](https://github.com/Naddybsx)
@@ -18,7 +41,7 @@ Welkom op de squadpage van team Hype. Een dynamische website waarbij je squadled
 - [`Node.js`](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs) & [`Express`](https://www.geeksforgeeks.org/express-js/): De basis van onze server en routing.
 - [`LiquidJS`](https://liquidjs.com/tutorials/intro-to-liquid.html): Voor het dynmisch renderen van HTML.
 - [`Directus API`](https://docs.directus.io/getting-started/quickstart.html): opslag en ophalen van squadleden, berichten en likes.
-- [`Cookie parser`](https://www.geeksforgeeks.org/express-cookie-parser-signed-and-unsigned-cookies/): Houdt bij wie ingelogd is en welke likes een gebruiker heeft gegeven.
+- [`Cookie parser`](https://www.geeksforgeeks.org/express-cookie-parser-signed-and-unsigned-cookies/): Maakt het makkelijk om cookies op te slaan en te gebruiken, gebruikt voor het inloggen.
 
 ### Hoe werkt de server?
 Onze server draait op `Node.js` en `Express` en verwerkt alle inkomende `HTTP verzoeken`. 
