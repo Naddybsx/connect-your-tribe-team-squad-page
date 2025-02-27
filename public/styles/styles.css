@@ -1,216 +1,215 @@
 @view-transition {
-    navigation: auto;
+  navigation: auto;
 }
 
 body,
 html {
-    min-height: 100%;
+  min-height: 100%;
 }
 
 .logout {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .login {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+
+  h1 {
+    text-align: center;
+  }
+
+  form {
+    align-self: center;
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    gap: 1em;
 
-    h1 {
-        text-align: center;
+    label {
+      display: flex;
+      flex-direction: column;
+      color: var(--primary-text-color);
+      font-family: var(--font-paragraph);
+      align-items: center;
     }
 
-    form {
-        align-self: center;
-        display: flex;
-        flex-direction: column;
-        gap: 1em;
+    input {
+      height: 3.5em;
+      width: 23em;
+      padding: 0em 0em 0em 1em;
+      margin: 2em 0em 0em 0em;
+      color: var(--primary-text-color);
+      font-family: var(--font-paragraph);
+      font-size: 16px;
 
-        label {
-            display: flex;
-            flex-direction: column;
-            color: var(--primary-text-color);
-            font-family: var(--font-paragraph);
-            align-items: center;
-        }
-
-        input {
-            height: 3.5em;
-            width: 23em;
-            padding: 0em 0em 0em 1em;
-            margin: 2em 0em 0em 0em;
-            color: var(--primary-text-color);
-            font-family: var(--font-paragraph);
-            font-size: 16px;
-
-            &::placeholder {
-                color: #cbcbcb;
-            }
-        }
-
-        button {
-            align-self: center;
-        }
+      &::placeholder {
+        color: #cbcbcb;
+      }
     }
+
+    button {
+      align-self: center;
+    }
+  }
 }
 
 section {
-    position: relative;
+  position: relative;
 }
 
 body:has(:only-child):has(> form:only-child) {
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 body {
-    background-image: url("/assets/blue-gradient-background.jpeg");
-    background-size: 100% 120%;
-    /* De afbeelding wordt exact geschaald naar de breedte en hoogte van de container */
-    background-position: 50% 0%;
+  background-image: url("/assets/blue-gradient-background.jpeg");
+  background-size: 100% 120%;
+  /* De afbeelding wordt exact geschaald naar de breedte en hoogte van de container */
+  background-position: 50% 0%;
 }
 
 ul li {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .squadpage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-    h1 {
-        text-align: center;
-    }
+  h1 {
+    text-align: center;
+  }
 
-    details {
-        position: relative;
-        max-inline-size: 40rem;
-        padding: 1rem;
-        margin-block: 1rem 0;
-        margin-inline: auto;
-        border: 1px solid hsl(260deg 100% 95%);
-        background-color: var(--secondary-background-color);
-        border-radius: 0.3rem;
-        width: 14em;
-        cursor: pointer;
-        z-index: 10;
+  details {
+    position: relative;
+    max-inline-size: 40rem;
+    padding: 1rem;
+    margin-block: 1rem 0;
+    margin-inline: auto;
+    border: 1px solid hsl(260deg 100% 95%);
+    background-color: var(--secondary-background-color);
+    border-radius: 0.3rem;
+    width: 14em;
+    cursor: pointer;
+    z-index: 10;
 
-        .details-content {
-            li {
-                list-style-type: none;
+    .details-content {
+      li {
+        list-style-type: none;
 
-                &:first-child {
-                    list-style-type: none;
-                    border-bottom: solid 1px #c2c2c2;
-                    padding: 0.8em 0;
-                }
-
-                &:nth-child(2) {
-                    padding: 0.5em 0 0;
-                }
-
-                a {
-                    text-decoration: none;
-                    font-family: var(--font-paragraph);
-                    color: var(--primary-background-color);
-                    width: 100%;
-                    display: flex;
-
-                    &:hover {
-                        color: var(--primary-highlight-color);
-                    }
-                }
-            }
+        &:first-child {
+          list-style-type: none;
+          border-bottom: solid 1px #c2c2c2;
+          padding: 0.8em 0;
         }
 
-        &[open] summary::after {
-            display: inline-block;
-            transform: rotate(180deg);
-            translate: 0% -40%;
+        &:nth-child(2) {
+          padding: 0.5em 0 0;
         }
 
-        summary {
-            &::marker {
-                content: none;
-            }
+        a {
+          text-decoration: none;
+          font-family: var(--font-paragraph);
+          color: var(--primary-background-color);
+          width: 100%;
+          display: flex;
 
-            &::after {
-                content: "\25BC";
-                position: absolute;
-                inset-inline-end: 1rem;
-                inset-block-start: 1.6em;
-                transform: translateY(-50%);
-                transition: rotate 0.2s;
-            }
+          &:hover {
+            color: var(--primary-highlight-color);
+          }
         }
+      }
     }
 
-    /* Buiten de nesting gelaten omdat ::details-content geen geldige selector is */
-    .details::details-content {
-        display: block;
-        block-size: 0;
-        overflow: hidden;
-        transition-property: block-size, content-visibility;
-        transition-duration: 0.5s;
-        transition-behavior: allow-discrete;
+    &[open] summary::after {
+      display: inline-block;
+      transform: rotate(180deg);
+      translate: 0% -40%;
     }
 
-    .details[open]::details-content {
-        block-size: auto;
-        block-size: calc-size(auto, size);
-    }
+    summary {
+      &::marker {
+        content: none;
+      }
 
-
-    .menu-dropdown {
-        background-color: var(--secondary-background-color);
+      &::after {
+        content: "\25BC";
+        position: absolute;
+        inset-inline-end: 1rem;
+        inset-block-start: 1.6em;
+        transform: translateY(-50%);
+        transition: rotate 0.2s;
+      }
     }
+  }
+
+  /* Buiten de nesting gelaten omdat ::details-content geen geldige selector is */
+  .details::details-content {
+    display: block;
+    block-size: 0;
+    overflow: hidden;
+    transition-property: block-size, content-visibility;
+    transition-duration: 0.5s;
+    transition-behavior: allow-discrete;
+  }
+
+  .details[open]::details-content {
+    block-size: auto;
+    block-size: calc-size(auto, size);
+  }
+
+  .menu-dropdown {
+    background-color: var(--secondary-background-color);
+  }
 }
 
 .inleiding {
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5em;
-    justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+  justify-content: center;
 
-    @media screen and (min-width: 960px) {
-        width: 40%;
-    }
+  @media screen and (min-width: 960px) {
+    width: 40%;
+  }
 }
 
 .filter-bookgenre {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1em;
-    padding: 1.5em 0em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+  padding: 1.5em 0em;
 
-    @media screen and (min-width: 960px) {
-        padding: 2.5em 0em 3.5em 0em;
-    }
+  @media screen and (min-width: 960px) {
+    padding: 2.5em 0em 3.5em 0em;
+  }
 }
 
 #person-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  width: 100%;
 
-    gap: 4em;
-    padding: 5em 0em 0em 0em;
+  gap: 4em;
+  padding: 5em 0em 0em 0em;
 
-    @media screen and (min-width: 640px) {
-        gap: 4em 2em;
-    }
+  @media screen and (min-width: 640px) {
+    gap: 4em 2em;
+  }
 
     .student {
         position: relative;
@@ -220,11 +219,11 @@ ul li {
         flex-direction: column;
         cursor: pointer;
 
-        transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
 
-        @media screen and (min-width: 960px) {
-            width: 100%;
-        }
+    @media screen and (min-width: 960px) {
+      width: 100%;
+    }
 
         &:hover {
             transform: translateY(-0.5em);
@@ -232,103 +231,103 @@ ul li {
         }
 
 
-        .avatar {
-            border-radius: var(--big-rounded);
-            width: 7.5em;
-            height: 7.5em;
-            object-fit: cover;
-            margin: -5em 0em 2em 0em;
-        }
-
-        p {
-            text-align: left;
-            display: flex;
-            gap: 0.5em;
-            height: 6em;
-            overflow: hidden;
-
-            .book-icon {
-                width: 1.3em;
-            }
-        }
-
-        .bio {
-            overflow: hidden;
-
-            p {
-                padding: 1em 0em 0em 0em;
-            }
-        }
-
-        .buttons {
-            display: flex;
-            flex-direction: row;
-            gap: 0.7em;
-            padding: 1em 0em 0em 0em;
-        }
+    .avatar {
+      border-radius: var(--big-rounded);
+      width: 7.5em;
+      height: 7.5em;
+      object-fit: cover;
+      margin: -5em 0em 2em 0em;
     }
+
+    p {
+      text-align: left;
+      display: flex;
+      gap: 0.5em;
+      height: 6em;
+      overflow: hidden;
+
+      .book-icon {
+        width: 1.3em;
+      }
+    }
+
+    .bio {
+      overflow: hidden;
+
+      p {
+        padding: 1em 0em 0em 0em;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 0.7em;
+      padding: 1em 0em 0em 0em;
+    }
+  }
 }
 
 /* ------------------------------------- Student.liquid -------------------------------------- */
 
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .link-back {
+    margin: 0em 0em 2em 0em;
+    width: 100%;
+
+    @media screen and (min-width: 960px) {
+      margin: 0em 0em -2em 0em;
+    }
+
+    a {
+      display: inline-flex;
+      gap: 0.7em;
+      text-decoration: none;
+    }
+  }
+
+  h1 {
+    text-align: center;
+    padding: 0.5em 0em 0em 0em;
+  }
+
+  .profile {
+    border-radius: var(--big-rounded);
+    width: 100%;
+
+    @media screen and (min-width: 450px) {
+      width: 25em;
+      height: 25em;
+      object-fit: cover;
+    }
+
+    @media screen and (min-width: 960px) {
+      width: 25em;
+      height: 25em;
+      object-fit: cover;
+    }
+  }
+
+  .introductie {
+    max-width: 100%;
+    text-align: center;
+
+    @media screen and (min-width: 960px) {
+      max-width: 60%;
+    }
+  }
+
+  .meer-info {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .link-back {
-        margin: 0em 0em 2em 0em;
-        width: 100%;
-
-        @media screen and (min-width: 960px) {
-            margin: 0em 0em -2em 0em;
-        }
-
-        a {
-            display: inline-flex;
-            gap: 0.7em;
-            text-decoration: none;
-        }
-    }
-
-    h1 {
-        text-align: center;
-        padding: 0.5em 0em 0em 0em;
-    }
-
-    .profile {
-        border-radius: var(--big-rounded);
-        width: 100%;
-
-        @media screen and (min-width: 450px) {
-            width: 25em;
-            height: 25em;
-            object-fit: cover;
-        }
-
-        @media screen and (min-width: 960px) {
-            width: 25em;
-            height: 25em;
-            object-fit: cover;
-        }
-    }
-
-    .introductie {
-        max-width: 100%;
-        text-align: center;
-
-        @media screen and (min-width: 960px) {
-            max-width: 60%;
-        }
-    }
-
-    .meer-info {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1em;
-        justify-content: center;
-        padding: 2em 0em 0em 0em;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+    padding: 2em 0em 0em 0em;
 
         li {
             p {
@@ -396,7 +395,6 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-
     &:hover {
         cursor: pointer;
         transform: scale(1.1);
@@ -404,17 +402,74 @@ main {
 }
 
 .like-counter {
-    color: white;
-    font-weight: bold;
-    position: absolute;
+  color: white;
+  font-weight: bold;
+  position: absolute;
 }
 
 /* ---------------------------------- Footer -------------------------------------- */
 
 footer {
-    p {
-        border-top: 1px #fff solid;
-        text-align: center;
-        padding: 1em 0em 0em 0em;
-    }
+  p {
+    border-top: 1px #fff solid;
+    text-align: center;
+    padding: 1em 0em 0em 0em;
+  }
 }
+
+/* ---------------------------------- Animatie -------------------------------------- */
+
+.card {
+  opacity: 0;
+  &:has(.bubble-up) {
+    opacity: unset;
+  }
+}
+
+.bubble-up {
+  opacity: 1; /* The opacity will change when bubble-up is added */
+  animation: bubble-up .5s ease-out forwards; /* Animation for the card */
+}
+
+/* Keyframes for bubble-up animation */
+@keyframes bubble-up {
+    0% {
+      transform: translateY(40px) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      transform: translateY(36px) translateX(2px);
+      opacity: 0.2;
+    }
+    20% {
+      transform: translateY(32px) translateX(3px);
+      opacity: 0.4;
+    }
+    30% {
+      transform: translateY(28px) translateX(2px);
+      opacity: 0.6;
+    }
+    40% {
+      transform: translateY(24px) translateX(0);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(20px) translateX(-2px);
+      opacity: 1;
+    }
+    60% {
+      transform: translateY(16px) translateX(-3px);
+    }
+    70% {
+      transform: translateY(12px) translateX(-2px);
+    }
+    80% {
+      transform: translateY(8px) translateX(-1px);
+    }
+    90% {
+      transform: translateY(4px) translateX(0);
+    }
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+  }
