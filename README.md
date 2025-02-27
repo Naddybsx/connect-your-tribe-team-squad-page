@@ -38,7 +38,7 @@ https://github.com/user-attachments/assets/17d5df3b-8019-42ba-ba97-b63479fa0110
 - [`Node.js`](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs) & [`Express`](https://www.geeksforgeeks.org/express-js/): De basis van onze server en routing.
 - [`LiquidJS`](https://liquidjs.com/tutorials/intro-to-liquid.html): Voor het dynmisch renderen van HTML.
 - [`Directus API`](https://docs.directus.io/getting-started/quickstart.html): opslag en ophalen van squadleden, berichten en likes.
-- [`Cookie parser`](https://www.geeksforgeeks.org/express-cookie-parser-signed-and-unsigned-cookies/): Houdt bij wie ingelogd is en welke likes een gebruiker heeft gegeven.
+- [`Cookie parser`](https://www.geeksforgeeks.org/express-cookie-parser-signed-and-unsigned-cookies/): Maakt het makkelijk om cookies op te slaan en te gebruiken, gebruikt voor het inloggen.
 
 ### Hoe werkt de server?
 Onze server draait op `Node.js` en `Express` en verwerkt alle inkomende `HTTP verzoeken`. 
