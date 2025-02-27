@@ -5,7 +5,7 @@
     <h1>Login</h1>
     <form method="post" action="/login" class="primary-tekst">
       <label>Vul hier je voornaam en eerste 2 letters van je achternaam in:
-        <input type="text" name="naam" class="glass" {% if inputName %}value="{{ inputName }}"{% endif %} placeholder="Bijv. Marcin Ma">
+        <input type="text" name="naam" class="glass" {% if inputName %}value="{{ inputName }}"{% endif %} placeholder="Bijv. {{randomPerson}}">
       </label>
       <span class="error-message">{{ error }}</span>
       <button class="filter-link" type="submit">submit</button>

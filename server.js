@@ -16,14 +16,12 @@ const processedPeople = persons.map((person) => {
   try {
     const capitalizedParts = person.name
       .split(" ") // Split de naam in verschillende delen
-      .filter((part) => /^[A-Z]/.test(part)) // Test of de eerste letter een hoofdletter is
-      .map((part) => part.toLowerCase()); // Zet alle resterende letters naar lowercase
+      .filter((part) => /^[A-Z]/.test(part)); // Test of de eerste letter een hoofdletter is
 
     return {
       firstName: capitalizedParts[0],
-      // Pak de eerste 2 letters van de achternaam
       lastName: capitalizedParts[1],
-      fullName: capitalizedParts[0] + capitalizedParts[1].slice(0, 2),
+      fullName: (capitalizedParts[0] + capitalizedParts[capitalizedParts.length - 1].slice(0, 2)).toLowerCase(),
     };
   } catch (error) {
     // In het geval dat een naam niet correct is krijg je er een error over en wordt er een lege string gereturned
@@ -40,6 +38,7 @@ const processedPeople = persons.map((person) => {
     };
   }
 });
+
 
 const app = express();
 
@@ -60,6 +59,7 @@ app.use(cookieParser());
 
 // Update the logged variable to read from cookies
 app.use((request, response, next) => {
+  console.log(processedPeople);
   // Zo weten wie er ingelogd is
   logged = request.cookies.logged;
   next();
@@ -180,10 +180,14 @@ app.post("/student/:id", async function (request, response) {
   response.redirect(303, `/student/${request.params.id}`);
 });
 
-app.get("/login", async function (request, response) {
-  if (logged) return response.redirect(303, "/");
-
-  response.render("login.liquid");
+app.get("/login", function (request, response) {
+  // Select a random person from processedPeople array
+  const assignPerson = processedPeople[Math.floor(Math.random() * processedPeople.length)];
+  const randomPerson = `${assignPerson.firstName} ${assignPerson.lastName.slice(0, 2)}`;
+  console.log(randomPerson);
+  response.render("login.liquid", {
+    randomPerson
+  });
 });
 
 app.post("/login", async function (request, response) {
