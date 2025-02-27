@@ -8,10 +8,10 @@ Welkom op de squadpage van team Hype. Een dynamische website waarbij je squadled
 `Inloggen is simpel:` vul je voornaam en de eerste twee letters vanje achternaam in. Eenmaal ingelogd kom je op de overzichtspagina, waar je alle squadleden ziet. Je kunt een like achterlaten als je iemand wilt waarderen en berichten plaatsen op hun profielpagina. Alles wordt netjes opgeslagen, zodat je kunt zien wie de meeste likes heeft en wat er wordt gezegd!
 
 ### Teamleden & bijdragen
-- Amber
-- Colin
-- Marcin
-- Nadira
+- [Amber](https://github.com/ambersr)
+- [Colin](https://github.com/ColindeGroot)
+- [Marcin](https://github.com/MarsGotBars)
+- [Nadira](https://github.com/Naddybsx)
 
 ## Kenmerken
 `Onze squadpage is gebouwd met de volgende technieken:` Klik op de linkjes om meer te leren over wat deze technieken inhouden en hoe je het kunt gebruiken :)
