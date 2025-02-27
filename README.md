@@ -14,11 +14,11 @@ Welkom op de squadpage van team Hype. Een dynamische website waarbij je squadled
 - Nadira
 
 ## Kenmerken
-`Onze squadpage is gebouwd met de volgende technieken:`
-- `Node.js` & `Express`: De basis van onze server en routing.
-- `LiquidJS`: Voor het dynmisch renderen van HTML.
-- `Directus API`: opslag en ophalen van squadleden, berichten en likes.
-- `Cookie parser`: Houdt bij wie ingelogd is en welke likes een gebruiker heeft gegeven.
+`Onze squadpage is gebouwd met de volgende technieken:` Klik op de linkjes om meer te leren over wat deze technieken inhouden en hoe je het kunt gebruiken :)
+- [`Node.js`](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs) & [`Express`](https://www.geeksforgeeks.org/express-js/): De basis van onze server en routing.
+- [`LiquidJS`](https://liquidjs.com/tutorials/intro-to-liquid.html): Voor het dynmisch renderen van HTML.
+- [`Directus API`](https://docs.directus.io/getting-started/quickstart.html): opslag en ophalen van squadleden, berichten en likes.
+- [`Cookie parser`](https://www.geeksforgeeks.org/express-cookie-parser-signed-and-unsigned-cookies/): Houdt bij wie ingelogd is en welke likes een gebruiker heeft gegeven.
 
 ### Hoe werkt de server?
 Onze server draait op `Node.js` en `Express` en verwerkt alle inkomende `HTTP verzoeken`. 
