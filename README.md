@@ -30,12 +30,14 @@ Hier is een overzicht van hoe dit werkt:
 4. `State beheren`: Met `cookies` slaan we inloggegevens en voorkeuren van gebruikers op.
 
 ### Routes en dataverwerking
-- [app.get("/")](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L88-L128) : Laadt de squadpage met alle personen, likes en filterfunctionaiteit. Data wordt opgehaald via; https:fdnd.directus.app/items/person/
+Onze server maakt gebruik van verschillende `routes` om data op te halen, te verwerken en weer te geven.
+<details><summary>Zie hier hoe wij specifieke data hebben opgehaald en verwerkt via verschillende routes:</summary>
+- [app.get("/")](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L88-L128) : Laadt de squadpage met alle personen, likes en filterfunctionaiteit. Data wordt opgehaald via; `https:fdnd.directus.app/items/person/`
 - [app.get("/login)](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L176-L180) : Laadt de inlogpagina
-- [app.post("/login")](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L182-L229) : Verwerkt de inloggegevens en slaat de gebruiker op in een cookie. De login wordt gevalideerd aan de hand van processedPeople.
+- [app.post("/login")](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L182-L229) : Verwerkt de inloggegevens en slaat de gebruiker op in een cookie. De login wordt gevalideerd aan de hand van `processedPeople`.
 - [app.get("/student/:id")](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L131-L154) : Laadt de detailpagina van een persoon, incl hun profiel en berichten. Berichten worden gesorteerd op datum, waarbij het nieuwste bericht bovenaan staat.
 - [app.post("/student:id")](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L157-L172) : Voegt een bericht toe aan een persoon en slaat deze op.
 - [app.post:("/like")](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L275-L321) : Voegt een like toe of verwijdert deze als de gebruiker al heeft geliket. Een gebruiker kan slechts één like per persoon toevoegen of verwijderen.
-
+</details>
 ## Installatie
 
