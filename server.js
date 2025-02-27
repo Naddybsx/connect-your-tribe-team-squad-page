@@ -23,7 +23,7 @@ const processedPeople = persons.map((person) => {
       firstName: capitalizedParts[0],
       // Pak de eerste 2 letters van de achternaam
       lastName: capitalizedParts[1],
-      fullName: capitalizedParts[0] + capitalizedParts[1].slice(0, 2)
+      fullName: capitalizedParts[0] + capitalizedParts[1].slice(0, 2),
     };
   } catch (error) {
     // In het geval dat een naam niet correct is krijg je er een error over en wordt er een lege string gereturned
@@ -36,7 +36,7 @@ const processedPeople = persons.map((person) => {
     return {
       firstName: "",
       processedName: "",
-      fullName: ""
+      fullName: "",
     };
   }
 });
@@ -89,7 +89,9 @@ app.get("/", async function (request, response) {
   sortLikes = request.query.sort; //sorteren
 
   // Haal alle likes op
-  const hypeLikes = await fetch(`https://fdnd.directus.app/items/messages/?filter={"for":"Team Hype Likes"}`);
+  const hypeLikes = await fetch(
+    `https://fdnd.directus.app/items/messages/?filter={"for":"Team Hype Likes"}`
+  );
   const { data: allLikes } = await hypeLikes.json();
 
   // Tel alle likes per persoon en check persoonlijke likes
@@ -104,11 +106,15 @@ app.get("/", async function (request, response) {
 
   //
   let sortedPersons = [...persons];
-  
+
   if (sortLikes === "likes-descending") {
-    sortedPersons.sort((a, b) => (likeCounts[b.id] || 0) - (likeCounts[a.id] || 0));
+    sortedPersons.sort(
+      (a, b) => (likeCounts[b.id] || 0) - (likeCounts[a.id] || 0)
+    );
   } else if (sortLikes === "likes-ascending") {
-    sortedPersons.sort((a, b) => (likeCounts[a.id] || 0) - (likeCounts[b.id] || 0));
+    sortedPersons.sort(
+      (a, b) => (likeCounts[a.id] || 0) - (likeCounts[b.id] || 0)
+    );
   }
 
   // Haal teamberichten op
@@ -124,7 +130,7 @@ app.get("/", async function (request, response) {
     messages,
     likes: JSON.stringify(personalLikes),
     likeCounts,
-    sortLikes
+    sortLikes,
   });
 });
 
@@ -140,17 +146,19 @@ app.get("/student/:id", async function (request, response) {
     `https://fdnd.directus.app/items/messages/?filter={"for":"${request.params.id}"}&fields=*,created`
   );
   const { data: messages } = await messagesResponse.json();
-  
+
   //sorter zodat je nieuwste bericht kan tonen
-  const sortedMessages = messages.sort((a, b) => new Date(b.created) - new Date(a.created));
-  
+  const sortedMessages = messages.sort(
+    (a, b) => new Date(b.created) - new Date(a.created)
+  );
+
   // Pak het nieuwste bericht
   const latestMessage = sortedMessages.length > 0 ? sortedMessages[0] : null;
 
   response.render("student.liquid", {
     person,
     squads,
-    messages // Stuur alleen berichten voor deze student
+    messages, // Stuur alleen berichten voor deze student
   });
 });
 
@@ -171,8 +179,6 @@ app.post("/student/:id", async function (request, response) {
   // Redirect naar de studentpagina om het nieuwste bericht weer te geven
   response.redirect(303, `/student/${request.params.id}`);
 });
-
-
 
 app.get("/login", async function (request, response) {
   if (logged) return response.redirect(303, "/");
@@ -225,7 +231,7 @@ app.post("/login", async function (request, response) {
     // Als de input niet overeenkomt met een van de personen in de processedPeople array, geef een error
     return response.render("login.liquid", {
       error: "Ongeldige login. Probeer opnieuw.",
-      inputName
+      inputName,
     });
   }
 });
@@ -240,7 +246,7 @@ app.get("/logger", async function (request, response) {
   response.render("logger.liquid", {
     teamName,
     squads,
-    messages
+    messages,
   });
 });
 
@@ -299,8 +305,8 @@ app.post("/like", async function (request, response) {
         },
       }
     );
-    
-    return response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ''}`);
+
+    return response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ""}`);
   }
 
   // like by default
@@ -319,7 +325,7 @@ app.post("/like", async function (request, response) {
     }
   );
 
-  response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ''}`);
+  response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ""}`);
 });
 
 app.set("port", process.env.PORT || 8000);
