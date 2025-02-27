@@ -272,5 +272,19 @@ Zie hieronder hoe wij specifieke data hebben opgehaald en verwerkt via verschill
 - [app.get("/student/:id")](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L131-L154) : Laadt de detailpagina van een persoon, incl hun profiel en berichten. Berichten worden gesorteerd op datum, waarbij het nieuwste bericht bovenaan staat.
 - [app.post("/student:id")](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L157-L172) : Voegt een bericht toe aan een persoon en slaat deze op.
 - [app.post:("/like")](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/blob/39d4fbd10823e3a7563c20540a1ca2c9a7795e44/server.js#L275-L321) : Voegt een like toe of verwijdert deze als de gebruiker al heeft geliket. Een gebruiker kan slechts één like per persoon toevoegen of verwijderen.
+
 ## Installatie
+
+### Scripts
+#### `npm i` of `npm install`
+Hiermee installeer je de benodigde packages zoals express & cookie-parser.
+
+#### `npm start`
+Hiermee start je het project.
+
+Open vervolgens [http://localhost:8000](http://localhost:8000) om het project te zien in de browser.
+
+Om edits te zien moet je de pagina refreshen omdat het geen hot-reload bevat.
+
+`console.log`'s in de `server.js` worden in de editor console weergeven, niet de browser.
 
