@@ -22,7 +22,7 @@ const processedPeople = persons.map((person) => {
     return {
       firstName: capitalizedParts[0],
       // Pak de eerste 2 letters van de achternaam
-      processedName: capitalizedParts[1].slice(0, 2),
+      lastName: capitalizedParts[1],
       fullName: capitalizedParts[0] + capitalizedParts[1].slice(0, 2)
     };
   } catch (error) {
@@ -36,6 +36,7 @@ const processedPeople = persons.map((person) => {
     return {
       firstName: "",
       processedName: "",
+      fullName: ""
     };
   }
 });
