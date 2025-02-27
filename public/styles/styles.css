@@ -213,6 +213,7 @@ ul li {
     }
 
     .student {
+        position: relative;
         padding: 2em;
         width: 100%;
         display: flex;
@@ -229,6 +230,7 @@ ul li {
             transform: translateY(-0.5em);
             transition: 0.2s ease-in-out;
         }
+
 
         .avatar {
             border-radius: var(--big-rounded);
@@ -339,6 +341,49 @@ main {
             }
         }
     }
+
+    form {
+        margin-top: 2em ;
+        width: 25em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: var(--primary-text-color);
+        font-family: var(--font-paragraph);
+        gap: 0.5em;
+
+        label{
+            font-size: 14px;
+        }
+
+        textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.193);
+            box-shadow: 0 4px 30px rgba(108, 9, 9, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--small-rounded);
+            padding: 1em 0 0 1em;
+        }
+
+        button {
+            padding: 1em 1.5em;
+            width: 9em;
+            margin: 1em auto;
+            box-shadow: none;
+            border: 1px solid var(--primary-text-color);
+            border-radius: var(--small-rounded);
+            color: var(--primary-text-color);
+            background-color: transparent;
+            &:hover{
+                cursor: pointer;
+                border: 1px solid var(--primary-background-color);
+                border-radius: var(--small-rounded);
+                color: var(--primary-background-color);
+                background-color: var(--primary-text-color);
+            }
+        }
+    }
 }
 
 .like-button {
@@ -351,6 +396,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+
     &:hover {
         cursor: pointer;
         transform: scale(1.1);
