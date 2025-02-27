@@ -78,47 +78,49 @@ app.use((request, response, next) => {
   next();
 });
 
-// Haal alle studenten uit squad G1 op
+// ophalen van mensen uit 1G
 const squadResponse = await fetch(
   'https://fdnd.directus.app/items/squad?filter={"_and":[{"cohort":"2425"},{"tribe":{"name":"FDND Jaar 1"}}]}'
 );
 const { data: squads } = await squadResponse.json();
 
 app.get("/", async function (request, response) {
-  // Get all likes
+  const sortLikes = request.query.sort; //sorteren
+
+  // Haal alle likes op
   const hypeLikes = await fetch(`https://fdnd.directus.app/items/messages/?filter={"for":"Team Hype Likes"}`);
   const { data: allLikes } = await hypeLikes.json();
 
-  // tel likeCounts en personalLikes in 1 pass
+  // Tel alle likes per persoon en check persoonlijke likes
   const likeCounts = {};
-  const likes = JSON.stringify(allLikes.reduce((likedPersonIds, like) => {
-    // tel alle likes per persoon (id)
+  const personalLikes = [];
+  allLikes.forEach((like) => {
     likeCounts[like.text] = (likeCounts[like.text] || 0) + 1;
-
-    // Check welke likes van de ingelogde gebruiker zijn
     if (like.from === logged) {
-      likedPersonIds.push(Number(like.text));
+      personalLikes.push(Number(like.text));
     }
-    return likedPersonIds;
-  }, []));
+  });
 
-  // Get team messages
+  //
+  let sortedPersons = [...persons];
+  if (sortLikes === "likes-down") {
+    sortedPersons.sort((a, b) => (likeCounts[b.id] || 0) - (likeCounts[a.id] || 0));
+  } else if (sortLikes === "likes-up") {
+    sortedPersons.sort((a, b) => (likeCounts[a.id] || 0) - (likeCounts[b.id] || 0));
+  }
+
+  // Haal teamberichten op
   const messagesResponse = await fetch(
-    `https://fdnd.directus.app/items/messages/?filter={"for":"${request.params.id}"}&sort=-date_created`
+    `https://fdnd.directus.app/items/messages/?filter={"for":"Team Hype"}&sort=-date_created`
   );
   const { data: messages } = await messagesResponse.json();
 
-
-
-
-
-  // Nettere implementatie voor likes & cleanere 
   response.render("index.liquid", {
     teamName,
-    persons,
+    persons: sortedPersons,
     squads,
     messages,
-    likes,
+    likes: JSON.stringify(personalLikes),
     likeCounts
   });
 });
@@ -143,11 +145,6 @@ app.get("/student/:id", async function (request, response) {
   const latestMessage = sortedMessages.length > 0 ? sortedMessages[0] : null;
   
   console.log("Laatste bericht:", latestMessage);
-  
-  
-
-  
-
 
   response.render("student.liquid", {
     person,
