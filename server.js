@@ -20,7 +20,7 @@ const processedPeople = persons.map((person) => {
 
     return {
       firstName: capitalizedParts[0],
-      lastName: capitalizedParts[1],
+      lastName: capitalizedParts.slice(1).join(' '),
       fullName: (capitalizedParts[0] + capitalizedParts[1].slice(0, 2)).toLowerCase(),
     };
   } catch (error) {
@@ -33,12 +33,11 @@ const processedPeople = persons.map((person) => {
     });
     return {
       firstName: "",
-      processedName: "",
+      lastName: "",
       fullName: "",
     };
   }
 });
-
 
 const app = express();
 
@@ -122,6 +121,14 @@ app.get("/", async function (request, response) {
   );
   const { data: messages } = await messagesResponse.json();
 
+  // Check wie er ingelogd is
+  const currentUser = processedPeople.find(person => 
+    (person.fullName === logged)
+  );
+
+  // Volle naam van de ingelogde gebruiker
+  const loggedInName = currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : null;
+
   response.render("index.liquid", {
     teamName,
     persons: sortedPersons,
@@ -130,6 +137,7 @@ app.get("/", async function (request, response) {
     likes: JSON.stringify(personalLikes),
     likeCounts,
     sortLikes,
+    loggedInName
   });
 });
 

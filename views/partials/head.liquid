@@ -12,6 +12,8 @@
 </head>
 
 <body>
-{% unless login %}
-{% render 'partials/logout.liquid' %}
-{% endunless %}
+    <p class="logged-in">Welkom {{loggedInName}}</p>
+    <a href="/logout" class="logout">logout</a>
+    {% unless login %}
+    {% render 'partials/logout.liquid' %}
+    {% endunless %}

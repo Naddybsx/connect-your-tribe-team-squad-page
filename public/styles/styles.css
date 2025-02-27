@@ -402,10 +402,19 @@ main {
     }
 }
 
-.logout {
+.logout, .logged-in {
   position: absolute;
   top: 1rem;
+  font-family: var(--font-paragraph);
+  z-index: 2;
+}
+
+.logout {
   right: 1rem;
+}
+
+.logged-in {
+  left: 1rem;
 }
 
 .login {
