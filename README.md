@@ -8,17 +8,23 @@ Welkom op de squadpage van team Hype. Een dynamische website waarbij je squadled
 
 <details><summary>Tutorials</summary>
 login: 
+  
 https://github.com/user-attachments/assets/62309719-68f8-47e8-9eed-8e0bfac62500
 
+
 overzicht:
+
 https://github.com/user-attachments/assets/26860199-a2fc-4aa9-bf79-1f1137d5eab2
+
 
 liken en filteren:
 
 https://github.com/user-attachments/assets/157b1490-3fec-45c6-a23e-01a3c9441aab
 
 detail pagina & berichten achterlaten:
+
 https://github.com/user-attachments/assets/c0c92a23-a184-4290-a5dc-d0cd78f1e407
+
 
 </details>
 
@@ -95,7 +101,6 @@ const processedPeople = persons.map((person) => {
   }
 });
 ```
-
 
 <sub>Snippet waarbij ik gebruik maak van `next()` om te checken of de gebruiker werkelijk is ingelogd of niet, als niet dan wordt deze _altijd_ naar /inlog ge-redirect</sub>
 
