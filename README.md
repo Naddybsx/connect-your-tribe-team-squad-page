@@ -3,7 +3,6 @@ Welkom op de squadpage van team Hype. Een dynamische website waarbij je squadled
 
 [Bekijk onze squadpage!](https://connect-your-tribe-team-squad-page-72f1.onrender.com/)
 
-
 ## Beschrijving
 `Inloggen is simpel:` vul je voornaam en de eerste twee letters vanje achternaam in. Eenmaal ingelogd kom je op de overzichtspagina, waar je alle squadleden ziet. Je kunt een like achterlaten als je iemand wilt waarderen en berichten plaatsen op hun profielpagina. Alles wordt netjes opgeslagen, zodat je kunt zien wie de meeste likes heeft en wat er wordt gezegd!
 
