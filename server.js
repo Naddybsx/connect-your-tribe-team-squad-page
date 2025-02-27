@@ -144,8 +144,6 @@ app.get("/student/:id", async function (request, response) {
   
   // Pak het nieuwste bericht
   const latestMessage = sortedMessages.length > 0 ? sortedMessages[0] : null;
-  
-  console.log("Laatste bericht:", latestMessage);
 
   response.render("student.liquid", {
     person,
