@@ -17,34 +17,43 @@
 
     <ul class="meer-info">
         <li>
-            <p><img class="label" src="/assets/books-icon.svg" alt="">{{ person.fav_book_genre | default: "Alle genres"}}</p>
+            <p><img class="label" src="/assets/books-icon.svg" alt="">{{ person.fav_book_genre | default: "Alle
+                genres"}}</p>
         </li>
         <li>
             <p><img class="label" src="/assets/icons.svg" alt="">{{ person.fav_emoji| default: "Favoriete emoji" }}</p>
         </li>
+        {% for person in persons %}
+        {% if person.fav_kitchen != blank %}
         <li>
             <p><img class="label" src="/assets/heart.svg" alt="">{{ person.fav_hobby | default: "Favoriete Hobby" }}</p>
         </li>
+        {% endif %}
+        {% endfor %}
+
         <li>
             <p><img class="label" src="/assets/paw.svg" alt="">{{ person.fav_animal | default: "Favoriete dier" }}</p>
         </li>
         <li>
-            <p><img class="label" src="/assets/burger-soda.svg" alt="">{{ person.fav_kitchen | default: "Favorieteeten"}}</p>
+            <p><img class="label" src="/assets/burger-soda.svg" alt="">{{ person.fav_kitchen | default: "Favoriete
+                eten"}}</p>
         </li>
         <li>
-            <p><img class="label" src="/assets/plane-departure.svg" alt="">{{ person.fav_country | default:"Favorieteland" }}</p>
+            <p><img class="label" src="/assets/plane-departure.svg" alt="">{{ person.fav_country | default:"Favoriete
+                land" }}</p>
         </li>
     </ul>
 
     <ul>
-        {% for message in messages %}
-            <li>{{ message.text }}</li>
+        {% if messages.size > 0 %}
+        <li>{{ messages[0].text }}</li> <!-- Nieuwste bericht -->
         {% else %}
-            <li>Er zijn nog geen berichten. Plaats iets leuks!</li>
-        {% endfor %}
+        <li>Er zijn nog geen berichten. Plaats iets leuks!</li>
+        {% endif %}
     </ul>
 
-    
+
+
 
     <form method="POST" action="/student/{{ person.id }}">
 
