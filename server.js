@@ -21,7 +21,7 @@ const processedPeople = persons.map((person) => {
     return {
       firstName: capitalizedParts[0],
       lastName: capitalizedParts[1],
-      fullName: (capitalizedParts[0] + capitalizedParts[capitalizedParts.length - 1].slice(0, 2)).toLowerCase(),
+      fullName: (capitalizedParts[0] + capitalizedParts[1].slice(0, 2)).toLowerCase(),
     };
   } catch (error) {
     // In het geval dat een naam niet correct is krijg je er een error over en wordt er een lege string gereturned
@@ -181,8 +181,8 @@ app.post("/student/:id", async function (request, response) {
 
 app.get("/login", function (request, response) {
   // Selecteer een willekeurige persoon uit de processedPeople array
-  const assignPerson = processedPeople[Math.floor(Math.random() * processedPeople.length)];
-  const randomPerson = `${assignPerson.firstName} ${assignPerson.lastName.slice(0, 2)}`;
+  const {firstName, lastName} = processedPeople[Math.floor(Math.random() * processedPeople.length)];
+  const randomPerson = `${firstName} ${lastName.slice(0, 2)}`;
 
   response.render("login.liquid", {
     randomPerson
@@ -190,6 +190,7 @@ app.get("/login", function (request, response) {
 });
 
 app.post("/login", async function (request, response) {
+  console.log(processedPeople);
   // Haal de input op van de login pagina
   const inputName = request.body.naam;
 
