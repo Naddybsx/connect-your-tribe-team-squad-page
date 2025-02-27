@@ -59,7 +59,6 @@ app.use(cookieParser());
 
 // Update the logged variable to read from cookies
 app.use((request, response, next) => {
-  console.log(processedPeople);
   // Zo weten wie er ingelogd is
   logged = request.cookies.logged;
   next();
@@ -181,10 +180,10 @@ app.post("/student/:id", async function (request, response) {
 });
 
 app.get("/login", function (request, response) {
-  // Select a random person from processedPeople array
+  // Selecteer een willekeurige persoon uit de processedPeople array
   const assignPerson = processedPeople[Math.floor(Math.random() * processedPeople.length)];
   const randomPerson = `${assignPerson.firstName} ${assignPerson.lastName.slice(0, 2)}`;
-  console.log(randomPerson);
+
   response.render("login.liquid", {
     randomPerson
   });
