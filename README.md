@@ -9,6 +9,7 @@ Welkom op de squadpage van team Hype. Een dynamische website waarbij je squadled
 ### Teamleden & bijdragen
 - [Amber](https://github.com/ambersr)
 
+
 Op de Squadpage heb ik een aandeel gehad in de ontwerpkeuzes. Denk bijvoorbeeld aan de styling van de inlogpagina en overige pagina's van de squadpage en de opbouw van de stylesheet dat alle huisstijl elementen bevat. Daarnaast heb ik de opzet gemaakt voor alle HTML en styling bestanden.
 
 **Ontwerpkeuzes**
@@ -29,8 +30,7 @@ https://github.com/user-attachments/assets/f6ef934f-52f0-4a3d-9312-605b86d8ef2e
 
 De filterfunctie is opgebouwd aan de hand van een `<detail>` met een `<summary>`, deze heb ik aan de hand van de pseudo element een animatie gegeven.
 
-<video alt="image" src="https://github.com/user-attachments/assets/17d5df3b-8019-42ba-ba97-b63479fa0110" width="250">
-
+https://github.com/user-attachments/assets/17d5df3b-8019-42ba-ba97-b63479fa0110
 
 - [Colin](https://github.com/ColindeGroot)
 - [Marcin](https://github.com/MarsGotBars)
