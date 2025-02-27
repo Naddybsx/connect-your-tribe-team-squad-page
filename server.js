@@ -42,8 +42,8 @@ const processedPeople = persons.map((person) => {
 
 const app = express();
 
-// Declare logged variable to store the logged-in user (null when no one is logged in)
-let logged = null; // Initialize as null when no user is logged in
+// initiële waarde voor logged
+let logged = null;
 
 app.use(express.static("public"));
 
@@ -300,6 +300,30 @@ app.post("/like", async function (request, response) {
   );
 
   response.redirect(303, "/");
+});
+
+// Haal alle likes op en verwijder ze
+app.post("/clear-likes", async function (request, response) {
+  // Get all likes
+  const likesResponse = await fetch(
+    `https://fdnd.directus.app/items/messages/?filter={"for":"Team Hype Likes"}`
+  );
+  const { data: likes } = await likesResponse.json();
+
+  // Delete each like
+  for (const like of likes) {
+    await fetch(
+      `https://fdnd.directus.app/items/messages/${like.id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }
+    );
+  }
+
+  return response.redirect(303, "/");
 });
 
 app.set("port", process.env.PORT || 8000);
