@@ -1,13 +1,15 @@
 {% render 'partials/head.liquid'
   , login = true; %}
-<form
-  method="post"
-  action="/login"
-  class="primary-tekst">
-  <label>Hoe heet je?
-    <input type="text" name="naam">
-  </label>
-  <button type="submit">submit</button>
-</form>
+
+  <section class="login">
+    <h1>Login</h1>
+    <form method="post" action="/login" class="primary-tekst">
+      <label>Vul hier je voornaam en eerste 2 letters van je achternaam in:
+        <input type="text" name="naam" class="glass"  placeholder="Bijv. Marcin Ma">
+      </label>
+      <button class="filter-link" type="submit">submit</button>
+    </form>
+  </section>
+
 {% render 'partials/foot.liquid'
   , login = true %}

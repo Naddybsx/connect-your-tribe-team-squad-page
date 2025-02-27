@@ -160,19 +160,22 @@ a {
 .filter-link {
     align-self: baseline;
     font-family: var(--font-header);
-    color: var(--primary-text-color);
+    color: var(--secondary-text-color);
     padding: 1em 1.6em;
     text-decoration: none;
     gap: 0.5em;
     display: inline-flex;
     transition: 0.2s ease-in-out;
     font-size: clamp(1rem, 1rem + 0vw, 1rem);
+    border: solid 1px var(--secondary-background-color);
+    border-radius: var(--small-rounded);
+    cursor: pointer;
 
     &:hover {
-        background-color: var(--secondary-background-color);
-        color: var(--secondary-text-color);
+        background-color: var(--primary-background-color);
+        color: var(--primary-text-color);
         transition: ease-in-out 0.2s;
-        border: 1px solid var(--secondary-background-color);
+        border: 1px solid var(--primary-background-color);
     }
 
     &:active {
