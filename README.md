@@ -224,6 +224,7 @@ app.post("/like", async function (request, response) {
 });
 ```
 <sub>Ook heb ik ervoor gezorgd dat als je had gefiltered (op likes - ascending of likes - descending), dat je ook op dat filter zou blijven door dit globaal te onthouden en weer door te geven</sub>
+
 ```js
 return response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ""}`);
 ```
@@ -246,6 +247,9 @@ https://github.com/user-attachments/assets/0aecb5d9-cb2f-4ea2-b226-cb09198f6295
 
 
 #### [Nadira](https://github.com/Naddybsx)
+
+Ik heb me voornamelijk bezig gehouden met het opzetten van de like funcionaliteit. Dit begon met een [breakdownschets](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/issues/2#issue-2874469481) van de homepagina en een [wireflow](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/issues/2#issue-2874469481) van de like interactie. Mijn doel was om een [POST verzoek](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/0102e10a6471d78118698cb0c879c6d8e667bbc9) te maken waarmee gebruikers een like kunnen achterlaten bij squadleden, en deze data dynamisch weer te geven met liquid. Ik implementeerde een [likes object](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/159a5ebd62534b9b9222e85d40eb31c7a8e18ea6) op de server, [verwerkte](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/a35414fbe450b91854b7275a0139db5bfbe32c7c) de interacties en zorgde ervoor dat het juiste aantal likes werd [opgeslagen](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/0102e10a6471d78118698cb0c879c6d8e667bbc9) en [weergegeven](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/0102e10a6471d78118698cb0c879c6d8e667bbc9). Daarnaast werkte ik aan de [styling](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/5ccc048cf6a47f8df766be74719c4537802cf3d9) en positionering van de like knop. [Marcin](https://github.com/MarsGotBars) hielp mij verder bij het uitbreiden van de functie met het [koppelen](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/7eb1d40168d6e8f8703225292b709c6a40f4af7e) van ingelogde gebruikers.
+- [Deze link bevat een uitgebreide documentatie van hoe ik dit heb geimplementeerd in code met de bijbehorende commits!](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/issues/6#issuecomment-2684170319)
 
 ## Kenmerken
 `Onze squadpage is gebouwd met de volgende technieken:` Klik op de linkjes om meer te leren over wat deze technieken inhouden en hoe je het kunt gebruiken :)
