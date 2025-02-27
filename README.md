@@ -166,6 +166,85 @@ app.post("/login", async function (request, response) {
 Ook krijgt de gebruiker een `error` message als de input leeg is of als de naam verkeerd is.
 In het geval dat de naam verkeerd is blijft de foute waarde staan na page reload dmv inputName op de value te zetten
 
+De nette form styling is te danken aan [Nadira](https://github.com/Naddybsx).
+
+##### Like systeem
+Na wat input van Dion hebben we besloten om gebruik te maken van een andere api route ipv de custom op alle gebruikers, dit om fouten / data-loss te voorkomen
+
+<sub>Snippet van de like post, zo wordt de data opgeslagen in de velden: for (ons team), text (de id van het gelikede persoon), from (wie hen heeft geliked)</sub>
+<sub>Eerst wordt er gecheckt, met behulp van de compareJson, of persoon x persoon y al heeft geliked, hier gebruiken we de `find()` functie voor, als itemToDelete data bevat, wordt dat object verwijdert gebaseerd op het gevonden ID</sub>
+
+```js
+app.post("/like", async function (request, response) {
+  let personId = request.body.person_id;
+
+  // Data om te vergelijken
+  const compareData = await fetch(
+    `https://fdnd.directus.app/items/messages/?filter={"for":"Team Hype Likes"}`
+  );
+  const compareJson = await compareData.json();
+
+  // vergelijking, als het bestaat, pak de id en delete gebaseerd hierop
+  const itemToDelete = compareJson.data.find(
+    (person) => person.from === logged && person.text === personId
+  )?.id;
+
+  if (itemToDelete) {
+    // Wait for the delete operation to complete
+    await fetch(
+      `https://fdnd.directus.app/items/messages/${itemToDelete}?filter={"for":"Team Hype Likes"}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      }
+    );
+
+    return response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ""}`);
+  }
+
+  // like by default
+  await fetch(
+    `https://fdnd.directus.app/items/messages/?filter={"for":"Team Hype Likes"}`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        for: `Team Hype Likes`,
+        text: personId,
+        from: logged,
+      }),
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+    }
+  );
+
+  response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ""}`);
+});
+```
+<sub>Ook heb ik ervoor gezorgd dat als je had gefiltered (op likes - ascending of likes - descending), dat je ook op dat filter zou blijven door dit globaal te onthouden en weer door te geven</sub>
+```js
+return response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ""}`);
+```
+##### Code refactoring
+In vele plekken heb ik de code verbeterd / aangepast zodat het makkelijker te gebruiken was en/of leesbaarder was, zo heb ik bijvoorbeeld de props korter gemaakt:
+
+(Normaal)
+
+![Image](https://github.com/user-attachments/assets/f84c2594-8a6d-4427-8c9b-f196fdf24c57)
+
+(Na refactor)
+
+![Image](https://github.com/user-attachments/assets/d7d94c36-758c-492f-9eac-e6c68e37308b)
+
+##### Animatie
+Hiervoor heb ik een `observer()` gebruikt en heb ik ervoor gezorgt dat ze gelijdelijk maar ook op random delays verschijnen door gebruik te maken van een `setTimeout()`
+
+https://github.com/user-attachments/assets/0aecb5d9-cb2f-4ea2-b226-cb09198f6295
+
+
+
 #### [Nadira](https://github.com/Naddybsx)
 
 ## Kenmerken
