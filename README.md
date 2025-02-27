@@ -18,8 +18,8 @@ Styling
 <br>
 De kleuren op de squadpage bevatten de kleuren van het huisstijl. De belangrijkste elementen zoals de studenten cards en de buttons hebben een glass effect en bevatten een ronde border dit zorgt voor consistentie. Ook tussenruimtes (padding) wordt consistent doorgevoerd en zorgt ervoor dat de website een clean uiterlijk heeft.
 
-<img width="450" alt="image" src="https://github.com/user-attachments/assets/fdafc4c2-c147-4817-bc89-f503212c79f7" />
-<img width="450" alt="image" src="https://github.com/user-attachments/assets/3dd0bd43-4b9d-453c-bda0-688d4bb17940" />
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/fdafc4c2-c147-4817-bc89-f503212c79f7" />
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/3dd0bd43-4b9d-453c-bda0-688d4bb17940" />
 <br></br>
 Functionaliteit
 <br>
