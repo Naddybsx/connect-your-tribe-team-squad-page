@@ -83,9 +83,9 @@ const squadResponse = await fetch(
   'https://fdnd.directus.app/items/squad?filter={"_and":[{"cohort":"2425"},{"tribe":{"name":"FDND Jaar 1"}}]}'
 );
 const { data: squads } = await squadResponse.json();
-
+let sortLikes;
 app.get("/", async function (request, response) {
-  const sortLikes = request.query.sort; //sorteren
+  sortLikes = request.query.sort; //sorteren
 
   // Haal alle likes op
   const hypeLikes = await fetch(`https://fdnd.directus.app/items/messages/?filter={"for":"Team Hype Likes"}`);
@@ -103,9 +103,10 @@ app.get("/", async function (request, response) {
 
   //
   let sortedPersons = [...persons];
-  if (sortLikes === "likes-down") {
+  
+  if (sortLikes === "likes-descending") {
     sortedPersons.sort((a, b) => (likeCounts[b.id] || 0) - (likeCounts[a.id] || 0));
-  } else if (sortLikes === "likes-up") {
+  } else if (sortLikes === "likes-ascending") {
     sortedPersons.sort((a, b) => (likeCounts[a.id] || 0) - (likeCounts[b.id] || 0));
   }
 
@@ -297,8 +298,8 @@ app.post("/like", async function (request, response) {
         },
       }
     );
-
-    return response.redirect(303, "/");
+    
+    return response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ''}`);
   }
 
   // like by default
@@ -317,7 +318,7 @@ app.post("/like", async function (request, response) {
     }
   );
 
-  response.redirect(303, "/");
+  response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ''}`);
 });
 
 app.set("port", process.env.PORT || 8000);
