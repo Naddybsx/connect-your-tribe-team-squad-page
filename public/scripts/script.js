@@ -1,9 +1,10 @@
 // Alle kaarten ophalen
 const cards = document.querySelectorAll(".card");
-
+const container = document.getElementById('person-list')
 // Hier bewaren we de kaarten die de view inkomen
 const initiallyVisible = [];
 
+container.classList.remove('client')
 // Observer opzetten
 const observer = new IntersectionObserver(
   (entries, obs) => {

@@ -426,6 +426,10 @@ footer {
   }
 }
 
+ul.client .card{
+    opacity: 1;
+}
+
 .bubble-up {
   opacity: 1; /* The opacity will change when bubble-up is added */
   animation: bubble-up .5s ease-out forwards; /* Animation for the card */
