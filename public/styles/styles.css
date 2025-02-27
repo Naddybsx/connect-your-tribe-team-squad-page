@@ -341,11 +341,22 @@ main {
     background: none;
     border: none;
     width: 5em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
 }
 
 .like-counter {
     color: white;
     font-weight: bold;
+    position: absolute;
 }
 
 /* ---------------------------------- Footer -------------------------------------- */
