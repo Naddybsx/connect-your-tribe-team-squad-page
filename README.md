@@ -6,6 +6,23 @@ Welkom op de squadpage van team Hype. Een dynamische website waarbij je squadled
 ## Beschrijving
 `Inloggen is simpel:` vul je voornaam en de eerste twee letters vanje achternaam in. Eenmaal ingelogd kom je op de overzichtspagina, waar je alle squadleden ziet. Je kunt een like achterlaten als je iemand wilt waarderen en berichten plaatsen op hun profielpagina. Alles wordt netjes opgeslagen, zodat je kunt zien wie de meeste likes heeft en wat er wordt gezegd!
 
+<details><summary>Tutorials</summary>
+login: 
+https://github.com/user-attachments/assets/62309719-68f8-47e8-9eed-8e0bfac62500
+
+overzicht:
+https://github.com/user-attachments/assets/26860199-a2fc-4aa9-bf79-1f1137d5eab2
+
+liken en filteren:
+
+https://github.com/user-attachments/assets/157b1490-3fec-45c6-a23e-01a3c9441aab
+
+detail pagina & berichten achterlaten:
+https://github.com/user-attachments/assets/c0c92a23-a184-4290-a5dc-d0cd78f1e407
+
+</details>
+
+
 ### Teamleden & bijdragen
 #### [Amber](https://github.com/ambersr)
 
@@ -247,6 +264,8 @@ https://github.com/user-attachments/assets/0aecb5d9-cb2f-4ea2-b226-cb09198f6295
 
 
 #### [Nadira](https://github.com/Naddybsx)
+
+https://github.com/user-attachments/assets/1910acc7-bbe9-4bf4-9741-62274803e890
 
 Ik heb me voornamelijk bezig gehouden met het opzetten van de like funcionaliteit. Dit begon met een [breakdownschets](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/issues/2#issue-2874469481) van de homepagina en een [wireflow](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/issues/2#issue-2874469481) van de like interactie. Mijn doel was om een [POST verzoek](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/0102e10a6471d78118698cb0c879c6d8e667bbc9) te maken waarmee gebruikers een like kunnen achterlaten bij squadleden, en deze data dynamisch weer te geven met liquid. Ik implementeerde een [likes object](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/159a5ebd62534b9b9222e85d40eb31c7a8e18ea6) op de server, [verwerkte](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/a35414fbe450b91854b7275a0139db5bfbe32c7c) de interacties en zorgde ervoor dat het juiste aantal likes werd [opgeslagen](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/0102e10a6471d78118698cb0c879c6d8e667bbc9) en [weergegeven](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/0102e10a6471d78118698cb0c879c6d8e667bbc9). Daarnaast werkte ik aan de [styling](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/5ccc048cf6a47f8df766be74719c4537802cf3d9) en positionering van de like knop. [Marcin](https://github.com/MarsGotBars) hielp mij verder bij het uitbreiden van de functie met het [koppelen](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/7eb1d40168d6e8f8703225292b709c6a40f4af7e) van ingelogde gebruikers.
 - [Deze link bevat een uitgebreide documentatie van hoe ik dit heb geimplementeerd in code met de bijbehorende commits!](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/issues/6#issuecomment-2684170319)
