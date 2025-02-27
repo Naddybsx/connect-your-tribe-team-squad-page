@@ -1,6 +1,6 @@
-@view-transition {
+/* @view-transition {
     navigation: auto;
-}
+} */
 
 body,
 html {
@@ -91,66 +91,99 @@ ul li {
     }
 
     details {
-        position: relative;
-        max-inline-size: 40rem;
-        padding: 1rem;
-        margin-block: 1rem 0;
-        margin-inline: auto;
-        border: 1px solid hsl(260deg 100% 95%);
-        background-color: var(--secondary-background-color);
-        border-radius: 0.3rem;
-        width: 14em;
-        cursor: pointer;
-        z-index: 10;
+         position: relative;
+         max-inline-size: 40rem;
+         padding: 1rem;
+         margin-block: 1rem 0;
+         margin-inline: auto;
+         border: 1px solid hsl(260deg 100% 95%);
+         background-color: var(--secondary-background-color);
+         border-radius: 0.3rem;
+         width: 14em;
+         cursor: pointer;
+         z-index: 10;
 
-        .details-content {
-            li {
-                list-style-type: none;
 
-                &:first-child {
-                    list-style-type: none;
-                    border-bottom: solid 1px #c2c2c2;
-                    padding: 0.8em 0;
-                }
+        .wrapper-dropdown {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s ease-out;
+            position: absolute;
+            margin-left: -1.05em;
 
-                &:nth-child(2) {
-                    padding: 0.5em 0 0;
-                }
+             ul {
+                 position: relative;
+                 top: 0;
+                 background: var(--secondary-background-color);
+                 width: 14em;
+                 padding: .5em 0em 1em 1em;
+                 border-radius: 0em 0em .3em .3em;
+                 &::before {
+                     content: '';
+                     position: absolute;
+                     top: 0;
+                     height: 100%;
+                     width: 100%;
+                     z-index: 0;
+                 }
 
-                a {
-                    text-decoration: none;
-                    font-family: var(--font-paragraph);
-                    color: var(--primary-background-color);
-                    width: 100%;
-                    display: flex;
+                 li {
+                     list-style-type: none;
+                      z-index: 10;
+                      position: relative;
 
-                    &:hover {
-                        color: var(--primary-highlight-color);
-                    }
-                }
-            }
+                     &:first-child {
+                         list-style-type: none;
+                         border-bottom: solid 1px #c2c2c2;
+                         padding: 0.8em 0;
+                     }
+
+                     &:nth-child(2) {
+                         padding: 0.5em 0 0;
+                     }
+
+                     a {
+                         text-decoration: none;
+                         font-family: var(--font-paragraph);
+                         color: var(--primary-background-color);
+                         width: 100%;
+                         display: flex;
+                         z-index: 10;
+
+                         &:hover {
+                             color: var(--primary-highlight-color);
+                         }
+                     }
+                 }
+             }
+
         }
-
+        
+        &[open] .wrapper-dropdown {
+    max-height: 10rem;
+    /* Schat een voldoende grote waarde om alle content te tonen */
+}
+    
         &[open] summary::after {
             display: inline-block;
             transform: rotate(180deg);
             translate: 0% -40%;
         }
 
-        summary {
-            &::marker {
-                content: none;
-            }
+         summary {
+        list-style: none;
+        cursor: pointer;
 
-            &::after {
-                content: "\25BC";
-                position: absolute;
-                inset-inline-end: 1rem;
-                inset-block-start: 1.6em;
-                transform: translateY(-50%);
-                transition: rotate 0.2s;
-            }
+        &::after {
+            content: "\25BC";
+            /* Pijltje naar beneden */
+            position: absolute;
+            inset-inline-end: 1rem;
+            inset-block-start: 1.6em;
+            transform: translateY(-50%);
+            transition: transform 0.2s;
         }
+    }
     }
 
     /* Buiten de nesting gelaten omdat ::details-content geen geldige selector is */
