@@ -225,6 +225,7 @@ app.post("/login", async function (request, response) {
     // Als de input niet overeenkomt met een van de personen in de processedPeople array, geef een error
     return response.render("login.liquid", {
       error: "Ongeldige login. Probeer opnieuw.",
+      inputName
     });
   }
 });
