@@ -239,7 +239,7 @@ In vele plekken heb ik de code verbeterd / aangepast zodat het makkelijker te ge
 ![Image](https://github.com/user-attachments/assets/d7d94c36-758c-492f-9eac-e6c68e37308b)
 
 ##### Animatie
-Hiervoor heb ik een `observer()` gebruikt en heb ik ervoor gezorgt dat ze gelijdelijk maar ook op random delays verschijnen door gebruik te maken van een `setTimeout()`
+Hiervoor heb ik een `observer()` gebruikt en heb ik ervoor gezorgd dat ze gelijdelijk maar ook op random delays verschijnen door gebruik te maken van een `setTimeout()`
 
 https://github.com/user-attachments/assets/0aecb5d9-cb2f-4ea2-b226-cb09198f6295
 
