@@ -7,60 +7,6 @@ html {
   min-height: 100%;
 }
 
-.logout {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-.login {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
-
-  h1 {
-    text-align: center;
-  }
-
-  form {
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-
-    label {
-      display: flex;
-      flex-direction: column;
-      color: var(--primary-text-color);
-      font-family: var(--font-paragraph);
-      align-items: center;
-    }
-
-    input {
-      height: 3.5em;
-      width: 23em;
-      padding: 0em 0em 0em 1em;
-      margin: 2em 0em 0em 0em;
-      color: var(--primary-text-color);
-      font-family: var(--font-paragraph);
-      font-size: 16px;
-
-      &::placeholder {
-        color: #cbcbcb;
-      }
-    }
-
-    button {
-      align-self: center;
-    }
-  }
-}
-
-section {
-  position: relative;
-}
-
 body:has(:only-child):has(> form:only-child) {
   display: grid;
   place-items: center;
@@ -153,6 +99,15 @@ ul li {
                          &:hover {
                              color: var(--primary-highlight-color);
                          }
+                         
+                         &.filter-active{
+                          font-weight: 600;
+                          color: var(--primary-highlight-color);
+                          transition: 0.2s ease-in-out;
+                          &:hover{
+                            color: var(--primary-background-color);
+                          }
+                        }
                      }
                  }
              }
@@ -438,6 +393,61 @@ main {
         }
     }
 }
+
+.logout {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+
+  h1 {
+    text-align: center;
+  }
+
+  form {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      color: var(--primary-text-color);
+      font-family: var(--font-paragraph);
+      align-items: center;
+    }
+
+    input {
+      height: 3.5em;
+      width: 23em;
+      padding: 0em 0em 0em 1em;
+      margin: 2em 0em 0em 0em;
+      color: var(--primary-text-color);
+      font-family: var(--font-paragraph);
+      font-size: 16px;
+
+      &::placeholder {
+        color: #cbcbcb;
+      }
+    }
+
+    button {
+      align-self: center;
+    }
+  }
+}
+
+section {
+  position: relative;
+}
+
 
 .like-button {
     background: none;

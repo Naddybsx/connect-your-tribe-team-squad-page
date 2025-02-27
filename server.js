@@ -123,7 +123,8 @@ app.get("/", async function (request, response) {
     squads,
     messages,
     likes: JSON.stringify(personalLikes),
-    likeCounts
+    likeCounts,
+    sortLikes
   });
 });
 
