@@ -198,7 +198,6 @@ app.get("/login", function (request, response) {
 });
 
 app.post("/login", async function (request, response) {
-  console.log(processedPeople);
   // Haal de input op van de login pagina
   const inputName = request.body.naam;
 
