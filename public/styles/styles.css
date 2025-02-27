@@ -55,7 +55,7 @@ ul li {
             max-height: 0;
             transition: max-height 0.5s ease-out;
             position: absolute;
-            margin-left: -1.05em;
+            left: -1px;
 
              ul {
                  position: relative;
