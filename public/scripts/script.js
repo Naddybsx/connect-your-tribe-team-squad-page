@@ -1,3 +1,14 @@
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".student").forEach(student => {
+    student.addEventListener("click", function (event) {
+
+      // Voorkomen dat een klik op de knoppen (zoals GitHub-link) de hele div laat navigeren
+      if (!event.target.closest(".buttons")) {
+        window.location.href = this.getAttribute("data-url");
+      }
+    });
+  });
+});
 // Alle kaarten ophalen
 const cards = document.querySelectorAll(".card");
 const container = document.getElementById('person-list')
