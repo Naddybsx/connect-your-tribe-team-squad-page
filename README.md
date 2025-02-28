@@ -66,7 +66,9 @@ D.M.V. cookie parser te gebruiken, sla ik in een cookie op wie inlogt, dit wordt
 Zo moeten gebruikers hun volle naam en eerste 2 letters van hun achternaam invullen om in te loggen, casing maakt hierbij niet uit aangezien ik dit allemaal omzet naar lowercase.
 
 <details><summary>Codebreakown inlogsysteem</summary>
+  
 <sub>Snippet waarbij ik gebruik maak van de persons data om alle valide gebruikers te verwerken en op te slaan</sub>
+  
 ```js
 const personResponse = await fetch(
   "https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={%22_and%22:[{%22squads%22:{%22squad_id%22:{%22tribe%22:{%22name%22:%22FDND%20Jaar%201%22}}}},{%22squads%22:{%22squad_id%22:{%22cohort%22:%222425%22}}},{%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}]}"
@@ -186,7 +188,9 @@ app.post("/login", async function (request, response) {
   }
 });
 ```
+
 </details>
+
 Ook krijgt de gebruiker een `error` message als de input leeg is of als de naam verkeerd is.
 In het geval dat de naam verkeerd is blijft de foute waarde staan na page reload dmv inputName op de value te zetten
 
@@ -198,6 +202,7 @@ Na wat input van Dion hebben we besloten om gebruik te maken van een andere api 
 <details><summary>Code breakdown like systeem</summary>
 
 <sub>Snippet van de like post, zo wordt de data opgeslagen in de velden: for (ons team), text (de id van het gelikede persoon), from (wie hen heeft geliked)</sub>
+
 <sub>Eerst wordt er gecheckt, met behulp van de compareJson, of persoon x persoon y al heeft geliked, hier gebruiken we de `find()` functie voor, als itemToDelete data bevat, wordt dat object verwijdert gebaseerd op het gevonden ID</sub>
 
 ```js
@@ -249,14 +254,18 @@ app.post("/like", async function (request, response) {
   response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ""}`);
 });
 ```
+
 <sub>Ook heb ik ervoor gezorgd dat als je had gefiltered (op likes - ascending of likes - descending), dat je ook op dat filter zou blijven door dit globaal te onthouden en weer door te geven</sub>
 
 ```js
 return response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ""}`);
 ```
+
 </details>
+
 ##### Code refactoring
 In vele plekken heb ik de code verbeterd / aangepast zodat het makkelijker te gebruiken was en/of leesbaarder was, zo heb ik bijvoorbeeld de props korter gemaakt:
+
 [Refactor commit](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/3b76005b13941888f6c263f3e40905f0b4f78150#diff-a4c65ede64197e1a112899a68bf994485b889c4b143198bac4af53425b38406fL112-R118)
 
 <details><summary>Voorbeeld: voor refactor:</summary>
