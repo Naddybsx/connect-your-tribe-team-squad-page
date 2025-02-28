@@ -65,6 +65,7 @@ D.M.V. cookie parser te gebruiken, sla ik in een cookie op wie inlogt, dit wordt
 
 Zo moeten gebruikers hun volle naam en eerste 2 letters van hun achternaam invullen om in te loggen, casing maakt hierbij niet uit aangezien ik dit allemaal omzet naar lowercase.
 
+<details><summary>Codebreakown inlogsysteem</summary>
 <sub>Snippet waarbij ik gebruik maak van de persons data om alle valide gebruikers te verwerken en op te slaan</sub>
 ```js
 const personResponse = await fetch(
@@ -185,6 +186,7 @@ app.post("/login", async function (request, response) {
   }
 });
 ```
+</details>
 Ook krijgt de gebruiker een `error` message als de input leeg is of als de naam verkeerd is.
 In het geval dat de naam verkeerd is blijft de foute waarde staan na page reload dmv inputName op de value te zetten
 
@@ -192,6 +194,8 @@ De nette form styling is te danken aan [Nadira](https://github.com/Naddybsx).
 
 ##### Like systeem
 Na wat input van Dion hebben we besloten om gebruik te maken van een andere api route ipv de custom op alle gebruikers, dit om fouten / data-loss te voorkomen
+
+<details><summary>Code breakdown like systeem</summary>
 
 <sub>Snippet van de like post, zo wordt de data opgeslagen in de velden: for (ons team), text (de id van het gelikede persoon), from (wie hen heeft geliked)</sub>
 <sub>Eerst wordt er gecheckt, met behulp van de compareJson, of persoon x persoon y al heeft geliked, hier gebruiken we de `find()` functie voor, als itemToDelete data bevat, wordt dat object verwijdert gebaseerd op het gevonden ID</sub>
@@ -250,19 +254,26 @@ app.post("/like", async function (request, response) {
 ```js
 return response.redirect(303, `/${sortLikes ? `?sort=${sortLikes}` : ""}`);
 ```
+</details>
 ##### Code refactoring
 In vele plekken heb ik de code verbeterd / aangepast zodat het makkelijker te gebruiken was en/of leesbaarder was, zo heb ik bijvoorbeeld de props korter gemaakt:
+[Refactor commit](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/3b76005b13941888f6c263f3e40905f0b4f78150#diff-a4c65ede64197e1a112899a68bf994485b889c4b143198bac4af53425b38406fL112-R118)
 
-(Normaal)
+<details><summary>Voorbeeld: voor refactor:</summary>
 
 ![Image](https://github.com/user-attachments/assets/f84c2594-8a6d-4427-8c9b-f196fdf24c57)
 
-(Na refactor)
+</details>
+
+<details><summary>Voorbeeld: na refactor:</summary>
 
 ![Image](https://github.com/user-attachments/assets/d7d94c36-758c-492f-9eac-e6c68e37308b)
 
+</details>
+
 ##### Animatie
 Hiervoor heb ik een `observer()` gebruikt en heb ik ervoor gezorgd dat ze gelijdelijk maar ook op random delays verschijnen door gebruik te maken van een `setTimeout()`
+[Animatie commit](https://github.com/Naddybsx/connect-your-tribe-team-squad-page/commit/09061934772d96d7af82234765a289ca4c43d0c0)
 
 https://github.com/user-attachments/assets/0aecb5d9-cb2f-4ea2-b226-cb09198f6295
 
