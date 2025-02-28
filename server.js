@@ -41,8 +41,8 @@ const processedPeople = persons.map((person) => {
 
 const app = express();
 
-// Declare logged variable to store the logged-in user (null when no one is logged in)
-let logged = null; // Initialize as null when no user is logged in
+// Zet logged op null als initiële state
+let logged = null;
 
 app.use(express.static("public"));
 
@@ -56,7 +56,7 @@ app.use(express.urlencoded({ extended: true }));
 // Maakt het leven makkelijker met cookies
 app.use(cookieParser());
 
-// Update the logged variable to read from cookies
+// Update logged als deze in de cookies staat
 app.use((request, response, next) => {
   // Zo weten wie er ingelogd is
   logged = request.cookies.logged;
@@ -306,7 +306,7 @@ app.post("/like", async function (request, response) {
   )?.id;
 
   if (itemToDelete) {
-    // Wait for the delete operation to complete
+    // Als er een item is, delete het
     await fetch(
       `https://fdnd.directus.app/items/messages/${itemToDelete}?filter={"for":"Team Hype Likes"}`,
       {
