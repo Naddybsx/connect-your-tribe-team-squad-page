@@ -39,6 +39,9 @@ const processedPeople = persons.map((person) => {
   }
 });
 
+// Selecteer een willekeurige persoon uit de processedPeople array
+const {firstName, lastName} = processedPeople[Math.floor(Math.random() * processedPeople.length)];
+const randomPerson = `${firstName} ${lastName.slice(0, 2)}`;
 const app = express();
 
 // Zet logged op null als initiële state
@@ -188,10 +191,6 @@ app.post("/student/:id", async function (request, response) {
 });
 
 app.get("/login", function (request, response) {
-  // Selecteer een willekeurige persoon uit de processedPeople array
-  const {firstName, lastName} = processedPeople[Math.floor(Math.random() * processedPeople.length)];
-  const randomPerson = `${firstName} ${lastName.slice(0, 2)}`;
-
   response.render("login.liquid", {
     randomPerson
   });
@@ -204,6 +203,7 @@ app.post("/login", async function (request, response) {
   if (!inputName) {
     return response.render("login.liquid", {
       error: "Voer een naam in",
+      randomPerson
     });
   }
 
@@ -243,6 +243,7 @@ app.post("/login", async function (request, response) {
     return response.render("login.liquid", {
       error: "Ongeldige login. Probeer opnieuw.",
       inputName,
+      randomPerson
     });
   }
 });
