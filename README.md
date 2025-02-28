@@ -56,7 +56,84 @@ De filterfunctie is opgebouwd aan de hand van een `<detail>` met een `<summary>`
 https://github.com/user-attachments/assets/17d5df3b-8019-42ba-ba97-b63479fa0110
 
 #### [Colin](https://github.com/ColindeGroot)
-  
+
+Op de squapage heb ik een formulier gebouwd met een textarea waar mensen een bericht kunnen achterlaten op een persoon. Dit is gedaan met een post route waarbij ik het toevoeg aan de messages in de directus:
+
+```js
+app.post("/student/:id", async function (request, response) {
+  // Bericht toevoegen aan de Directus API
+  await fetch("https://fdnd.directus.app/items/messages/", {
+    method: "POST",
+    body: JSON.stringify({
+      for: request.params.id,
+      text: request.body.message,
+    }),
+    headers: {
+      "Content-Type": "application/json;charset=UTF-8",
+    },
+  });
+
+  // Redirect naar de studentpagina om het nieuwste bericht weer te geven
+  response.redirect(303, `/student/${request.params.id}`);
+});
+```
+
+het formulier in de liquid file word met een post methode aan de juiste studentpagina. In dezelfde file heb ik een item gemaakt waar ik het meest recente bericht laat zien. Ik laat ze niet allemaal zien omdat het dan niet mooi past op de website:
+
+```liquid
+<ul>
+        {% if messages.size > 0 %}
+        <li>{{ messages[0].text }}</li> <!-- Nieuwste bericht -->
+        {% else %}
+        <li>Er zijn nog geen berichten. Plaats iets leuks!</li>
+        {% endif %}
+    </ul>
+
+    <form method="POST" action="/student/{{ person.id }}">
+
+        <label for="">typ iets leuks  </label>
+        <textarea placeholder="Typ iets leuks :D" name="message" id="" required></textarea>
+        <button method="submit">post bericht</button>
+
+    </form>
+```
+
+Omdat [0] normaal het eerste/oudste bericht laat zien heb ik het gefilterd op date zodat het filtert op meest recente berichten:
+```js
+  // filter op datum zodat je makkelijk meest recente bericht kan laten zien
+  const messagesResponse = await fetch(
+    `https://fdnd.directus.app/items/messages/?filter={"for":"${request.params.id}"}&fields=*,created`
+  );
+  const { data: messages } = await messagesResponse.json();
+```
+
+Daarnaast heb ik de filter op de homepage werkend gemaakt. In de liquid heb ik een link toegevoegd aan de li's in de summary voor de filter.
+``` liquid
+  <details class="details">
+    <summary>Filter op likes</summary>
+    <ul class="details-content">
+      <li><a href="?sort=likes-descending">Likes hoog - descending</a></li>
+      <li><a href="?sort=likes-ascending">Likes laag - ascending</a></li>
+    </ul>
+  </details>
+```
+
+En in de js heb ik een filter gemaakt waarbij je filtdert op aantal likes:
+
+```js
+ if (sortLikes === "likes-descending") {
+    sortedPersons.sort(
+      (a, b) => (likeCounts[b.id] || 0) - (likeCounts[a.id] || 0)
+    );
+  } else if (sortLikes === "likes-ascending") {
+    sortedPersons.sort(
+      (a, b) => (likeCounts[a.id] || 0) - (likeCounts[b.id] || 0)
+    );
+  }
+```
+
+Verder heb ik de studentpage verder gestyled en de css opgeschoond waarbij ik onnodige css heb verwijderd, nieuwe classes heb geschreven beter heb genest en meer responsive units heb toegevoegd.
+
 #### [Marcin](https://github.com/MarsGotBars)
 Grotendeels heb ik me beziggehouden met het inlogsysteem, like systeem, algemene code refactoring en de kaart animaties.
 
