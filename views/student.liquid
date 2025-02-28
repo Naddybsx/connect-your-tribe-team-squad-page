@@ -44,13 +44,16 @@
         </li>
     </ul>
 
-    <ul>
+    <div class="student-text">
+        <h3>Recent bericht:</h3>
         {% if messages.size > 0 %}
-        <li>{{ messages[0].text }}</li> <!-- Nieuwste bericht -->
-        {% else %}
-        <li>Er zijn nog geen berichten. Plaats iets leuks!</li>
-        {% endif %}
-    </ul>
+            <p>{{ messages[0].text }}</p> <!-- Nieuwste bericht -->
+            {% else %}
+            <p>Er zijn nog geen berichten. Plaats iets leuks!</p>
+            {% endif %} 
+    </div>
+       
+
 
 
 
